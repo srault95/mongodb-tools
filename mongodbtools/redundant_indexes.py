@@ -55,7 +55,7 @@ def get_client(host, port, username, password):
     return client
 
 
-def main(options):
+def _main(options):
     client = get_client(options.host, options.port, options.user, options.password)
 
     def compute_signature(index):
@@ -95,6 +95,9 @@ def main(options):
     for db in databases:
         report_redundant_indexes(client[db])
 
-if __name__ == "__main__":
+def main():
     options = get_cli_options()
-    main(options)
+    _main(options)
+
+if __name__ == "__main__":
+    main()

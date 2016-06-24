@@ -83,7 +83,7 @@ def get_client(host, port, username, password):
     mongoURI = "mongodb://" + userPass + host + ":" + str(port)
     return MongoClient(mongoURI)
 
-def main(options):
+def _main(options):
     summary_stats = {
         "count" : 0,
         "size" : 0,
@@ -170,6 +170,9 @@ def main(options):
         print "RAM Used: %s (%s%%)" % (convert_bytes(psutil.virtual_memory().used), psutil.virtual_memory().percent)
         print "Available RAM Headroom:", convert_bytes((100 - psutil.virtual_memory().percent) / 100 * ram_headroom)
 
-if __name__ == "__main__":
+def main():
     options = get_cli_options()
-    main(options)
+    _main(options)
+
+if __name__ == "__main__":
+    main()
